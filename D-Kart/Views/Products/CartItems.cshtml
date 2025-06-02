@@ -1,0 +1,63 @@
+﻿@model List<D_Kart.Domain.Models.Product>
+@{
+    ViewData["Title"] = "Cart Page";
+    decimal totalPrice = 0;
+}
+
+<!-- Cart Page -->
+<div class="container mt-5">
+    <h2 class="mb-4">Your Cart</h2>
+
+    @foreach (var product in Model)
+    {
+
+        totalPrice += product.Price;
+        <!-- Cart Items -->
+        <section class="cart-section";>
+            <div class="cart-container">
+                <img src="@product.ImageUrl" alt="White Shirt" ; />
+                <div class="cart-item-details flex-grow-1">
+                    <p class="mb-1 fw-bold">@product.Name</p>
+                    <p class="mb-0">Price: ₹@product.Price</p>
+                    <p> Discription: @product.Description</p>
+                </div>
+                <a asp-controller="Products" asp-action="RemoveFromCart" asp-route-id="@product.Id">
+                    <button class="cart-item-remove">Remove</button>
+                </a>
+                <br />
+                <a asp-action="Collection" asp-controller="Products">
+                    <button class="back_button" style="text-decoration: none; padding:3px"> Continue Shopping</button>
+                </a>
+         </div>
+        </section>
+    }
+    <!-- Checkout Button -->
+    <div class="cart-summary">
+        <h3>Total Price: ₹@totalPrice</h3>
+        <button class="checkout-btn" onclick="proceedToCheckout()">
+            Proceed to Checkout
+        </button>
+    </div>
+
+<!-- Payment Modal -->
+<div class="payment-modal" id="paymentModal">
+    <div class="payment-modal-content">
+        <h3>Select Payment Mode</h3>
+            <button onclick="onPaymentSuccess()" class="payment-btn">
+            Credit Card
+        </button>
+            <button onclick="onPaymentSuccess()" class="payment-btn">
+            PayPal
+        </button>
+            <button onclick="onPaymentSuccess()" class="payment-btn">
+            Cash on Delivery
+        </button>
+        <button onclick="closePaymentModal()" class="close-modal-btn">
+            Cancel
+        </button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/cart.js"></script>
+}

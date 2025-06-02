@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Contact Page";
+}
+
+<section class="contact-section" style="box-sizing: border-box;">
+    <div class="contact-container" style="box-sizing: border-box;">
+        <h2 style="box-sizing: border-box;">Contact Us</h2>
+        <form action="#" method="POST" class="contact-form" style="box-sizing: border-box;">
+            <label for="name">Name:</label>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   placeholder="Enter your name"
+                   required style="box-sizing: border-box;" />
+
+            <label for="email">Email:</label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   placeholder="Enter your email"
+                   required style="box-sizing: border-box;" />
+
+            <label for="message">Message:</label>
+            <textarea id="message"
+                      name="message"
+                      rows="5"
+                      placeholder="Enter your message"
+                      required style="box-sizing: border-box;"></textarea>
+
+            <button type="submit" style="box-sizing: border-box;">Send Message</button>
+        </form>
+    </div>
+</section>
+
+                   @section Scripts{
+    <script src="~/js/index.js"></script>
+}

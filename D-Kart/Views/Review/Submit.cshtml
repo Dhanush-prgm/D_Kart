@@ -1,0 +1,180 @@
+﻿@model List<D_Kart.Domain.Models.Review>
+@{
+    ViewData["Title"] = "Share Your Experience";
+}
+
+<section class="review-section">
+    <h2>How was your shopping experience?</h2>
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert-success">@TempData["Success"]</div>
+    }
+    <form asp-action="Submit" method="post" class="review-form" id="reviewForm" autocomplete="off">
+        <textarea name="feedback" rows="4" maxlength="500" placeholder="Share your feedback (max 500 chars)" required
+                  oninput="updateCharCount()"></textarea>
+        <div class="char-count" id="charCount">0/500</div>
+        <button type="submit" class="submit-btn">Submit Review</button>
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="validation-error">
+                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                {
+                    <div>@error.ErrorMessage</div>
+                }
+            </div>
+        }
+    </form>
+
+    <hr />
+    <h3 class="recent-title">Recent Reviews</h3>
+    <div class="reviews-list">
+        @foreach (var review in Model)
+        {
+            <div class="review">
+                <div class="review-date">@review.DateSubmitted.ToString("g")</div>
+                <div class="review-content">@review.Feedback</div>
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        function updateCharCount() {
+            var textarea = document.querySelector('textarea[name="feedback"]');
+            var charCount = document.getElementById('charCount');
+            charCount.textContent = textarea.value.length + "/500";
+        }
+
+        function showNavbar(){
+            sidenav.style.left = "0"
+        }
+
+        function closeNavbar(){
+            sidenav.style.left = "-60%"
+        }
+
+        // Initialize char count on page load
+        document.addEventListener("DOMContentLoaded", updateCharCount);
+    </script>
+}
+
+<style>
+    .review-section {
+        background: #fff;
+        border-radius: 15px;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+        padding: 36px 28px 28px 28px;
+        margin: 35px auto;
+        max-width: 640px;
+    }
+
+        .review-section h2 {
+            margin-bottom: 18px;
+            color: #e63946;
+            font-weight: 700;
+            text-align: center;
+        }
+
+    .review-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 10px;
+    }
+
+        .review-form textarea {
+            border-radius: 8px;
+            border: 1.5px solid #ddd;
+            padding: 14px;
+            resize: vertical;
+            font-size: 1.05em;
+            box-shadow: 0 2px 8px rgba(230,57,70,0.04);
+            outline: none;
+            transition: border 0.2s;
+        }
+
+            .review-form textarea:focus {
+                border: 1.5px solid #e63946;
+            }
+
+    .char-count {
+        text-align: right;
+        color: #999;
+        font-size: 0.96em;
+        margin-top: -8px;
+        margin-bottom: 2px;
+    }
+
+    .submit-btn {
+        background: #e63946;
+        color: #fff;
+        padding: 11px 0;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.07em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+        margin-top: 4px;
+    }
+
+        .submit-btn:hover {
+            background: #ad1b31;
+        }
+
+    .validation-error {
+        color: #e63946;
+        font-size: 0.98em;
+        margin-bottom: 7px;
+        padding-left: 2px;
+    }
+
+    .alert-success {
+        background: #e3f9ea;
+        color: #1c7c54;
+        padding: 10px 14px;
+        border-radius: 7px;
+        margin-bottom: 14px;
+        font-weight: 500;
+        border-left: 4px solid #1c7c54;
+    }
+
+    hr {
+        margin: 22px 0 18px 0;
+        border: none;
+        border-top: 1.5px solid #eee;
+    }
+
+    .recent-title {
+        color: #222;
+        font-size: 1.18em;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .reviews-list {
+        margin-top: 9px;
+    }
+
+    .review {
+        background: #faf9f6;
+        border-radius: 8px;
+        padding: 13px 18px 11px 18px;
+        margin-bottom: 15px;
+        border-left: 4px solid #e63946;
+        box-shadow: 0 2px 8px rgba(230,57,70,0.05);
+    }
+
+    .review-date {
+        color: #999;
+        font-size: 0.89em;
+        margin-bottom: 2px;
+    }
+
+    .review-content {
+        font-size: 1.07em;
+        word-break: break-word;
+    }
+
+</style>

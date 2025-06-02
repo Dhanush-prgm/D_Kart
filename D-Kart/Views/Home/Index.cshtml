@@ -1,0 +1,139 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- header section -->
+<div class="header">
+    <div>
+        <h1>Find It. Love It. Buy It!</h1>
+        <p>The Future of Shopping Starts Here!</p>
+        <a asp-controller="Products" asp-action="Collection">
+            <button class="header-button">Shop now !</button>
+        </a>
+    </div>
+
+    <div>
+        <img src="~/lib/images/Shop image.jpg" alt="" class="header-image" />
+    </div>
+</div>
+
+<!-- the service provide by us -->
+<div class="service">
+    <div class="service-container-1">
+        <div>
+            <h2>Your Satisfaction😉</h2>
+            <h2>Our Commitment!🤞</h2>
+        </div>
+        <div>
+            <p>|| We ensure that our customer have best shopping experience.</p>
+        </div>
+    </div>
+    <div class="service-container-2">
+        <div>
+            <i class="fa-regular fa-face-smile"></i>
+            <h4>True joy is inner peace !</h4>
+            <p>
+                Explore premium products, incredible deals, and outstanding
+                service—all in one place
+            </p>
+        </div>
+
+        <div>
+            <i class="fa-regular fa-face-smile"></i>
+            <h4>New Arrival Everday !</h4>
+            <p>
+                Exceptional service and top products guarantee happy, satisfied
+                returning customers every time
+            </p>
+        </div>
+
+        <div>
+            <i class="fa-regular fa-face-smile"></i>
+            <h4>Fast & Free Shipping !</h4>
+            <p>
+                Trust, excellence,seamless shopping ensure every purchase is smooth,
+                simple, and satisfying
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- Arrival section -->
+<div>
+    <h2 style="padding: 20px">New Arrival</h2>
+    <div class="new-arrival">
+        <div class="new-arrival-container">
+            <img src="~/lib/images/Electronics.jpg" alt="" />
+            <a asp-controller="Products" asp-action="Collection">
+                <button>Shop now <i class="fa-solid fa-arrow-right"></i></button>
+            </a>
+        </div>
+        <div class="new-arrival-container">
+            <img src="~/lib/images/dress.jpg" alt="" />
+            <a asp-controller="Products" asp-action="Collection">
+                <button>Shop now <i class="fa-solid fa-arrow-right"></i></button>
+            </a>
+        </div>
+        <div class="new-arrival-container">
+            <img src="~/lib/images/Toys.jpg" alt="" />
+            <a asp-controller="Products" asp-action="Collection">
+                <button>Shop now <i class="fa-solid fa-arrow-right"></i></button>
+            </a>
+        </div>
+        <div class="new-arrival-container">
+            <img src="~/lib/images/Skincare.jpg" alt="" />
+            <a asp-controller="Products" asp-action="Collection">
+                <button>Shop now <i class="fa-solid fa-arrow-right"></i></button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Most Wanted section -->
+<div>
+    <h2 style="padding: 20px">Most Wanted</h2>
+    <div class="new-arrival">
+        <div class="new-arrival-container">
+            <img src="~/lib/images/iphone.jpg" alt="" />
+            <a asp-controller="Products" asp-action="Collection">
+                <button>Shop now <i class="fa-solid fa-arrow-right"></i></button>
+            </a>
+        </div>
+        <div class="new-arrival-container">
+            <img src="~/lib/images/Watches.jpg" alt="" />
+            <a asp-controller="Products" asp-action="Collection">
+                <button>Shop now <i class="fa-solid fa-arrow-right"></i></button>
+            </a>
+        </div>
+        <div class="new-arrival-container">
+            <img src="~/lib/images/Shoes.jpg" alt="" />
+            <a asp-controller="Products" asp-action="Collection">
+                <button>Shop now <i class="fa-solid fa-arrow-right"></i></button>
+            </a>
+        </div>
+        <div class="new-arrival-container">
+            <img src="~/lib/images/Furniture.gif" alt="" />
+            <a asp-controller="Products" asp-action="Collection">
+                <button>Shop now <i class="fa-solid fa-arrow-right"></i></button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- News section  -->
+<div class="news">
+    <h2>Join our channel</h2>
+    <p>
+        Signup to our channel to get exclusive discounts and updates and more !
+    </p>
+    <div>
+        <input type="text" class="search" />
+    </div>
+    <div>
+        <button>Updates !</button>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/index.js"></script>
+}

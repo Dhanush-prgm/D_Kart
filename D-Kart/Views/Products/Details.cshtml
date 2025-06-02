@@ -1,0 +1,78 @@
+﻿@model D_Kart.Domain.Models.Product
+
+@{
+	ViewData["Title"] = @Model.Name;
+}
+
+<h1>@Model.Name</h1>
+
+<div class="product-details" style="margin-left: 10px">
+	<img src="@Model.ImageUrl" alt="@Model.Name" class="product-img" />
+	<p><strong>Description:</strong> @Model.Description</p>
+	<p><strong>Price:</strong> ₹@Model.Price</p>
+	<div>
+		<a asp-controller="Products" asp-action="AddToCart" asp-route-id="@Model.Id">
+			<button type="submit" class="add-to-cart">Add to Cart</button>
+		</a>
+		<br />
+		<a asp-action="Collection" asp-controller="Products">
+			<button class="back_button" style="text-decoration: none;"> Back to Products</button>
+		</a>
+		<br />
+
+		<form asp-action="Add" asp-controller="Favorites" asp-route-id="@Model.Id" method="post" style="display:inline;">
+			<button type="submit" title="Add to Favorites" class="fav-btn">
+				<i class="fa fa-heart"></i>
+			</button>
+		</form>
+	</div>
+</div>
+
+<style>
+
+	.fav-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #fff;
+		border: none;
+		cursor: pointer;
+		outline: none;
+		border-radius: 50%;
+		width: 38px;
+		height: 38px;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+		margin-top: 8px;
+		transition: background 0.2s, box-shadow 0.2s;
+		position: relative;
+	}
+
+		.fav-btn i.fa-heart {
+			color: #e63946;
+			font-size: 1.6em;
+			transition: color 0.2s, transform 0.15s;
+		}
+
+		.fav-btn:hover {
+			background: #ffe5e9;
+			box-shadow: 0 4px 16px rgba(230,57,70,0.15);
+		}
+
+			.fav-btn:hover i.fa-heart {
+				color: #ad1b31;
+				transform: scale(1.18);
+			}
+
+	.products-box {
+		background: #fff;
+		border-radius: 15px;
+		box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+		padding: 20px 15px 15px 15px;
+		margin-bottom: 30px;
+		transition: box-shadow 0.2s;
+	}
+
+		.products-box:hover {
+			box-shadow: 0 8px 32px rgba(230,57,70,0.13);
+		}
+</style>

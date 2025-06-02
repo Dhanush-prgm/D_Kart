@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - D_Kart</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/D_Kart.styles.css" asp-append-version="true" />
+
+    <!-- I have given the font family as Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+          integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+</head>
+<body>
+    <nav class="navbar">
+        <h1>D-Kart</h1>
+        <div class="navbar-links">
+            <p class="navbar-link"><a asp-controller="Home" asp-action="Index">Home</a></p>
+            <p class="navbar-link"><a asp-controller="Favorites" asp-action="List">My Favorites</a></p>
+            <p class="navbar-link"><a asp-controller="Products" asp-action="CartItems">Cart (@ViewBag.CartCount)</a></p>
+
+        </div>
+
+        <!-- creating a toggle bar  -->
+        <div class="navbar-menu-toggle" onclick="showNavbar()">
+            <!-- create a bar using font awesome class -->
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- create a side nav bar -->
+    <div class="side-navbar" onclick="closeNavbar()">
+        <p style="text-align: right">
+            <i class="fa-solid fa-xmark"></i>
+        </p>
+
+        <div class="side-navbar-links">
+            <p class="side-navbar-link"><a asp-controller="Home" asp-action="Index">Home</a></p>
+            <p class="side-navbar-link"><a asp-controller="Products" asp-action="Collection">Category</a></p>
+            <p class="side-navbar-link"><a asp-controller="Home" asp-action="Contact">Contact</a></p>
+            <p class="navbar-link"><a asp-controller="Favorites" asp-action="List">My Favorites</a></p>
+            <p class="side-navbar-link"><a asp-controller="Products" asp-action="CartItems">Cart (@ViewBag.CartCount)</a></p>
+
+        </div>
+    </div>
+    <div>
+        <main>
+            @RenderBody()
+        </main>
+    </div>
+        <div class="footer">
+      <div class="footer-container">
+        <div class="footer-box-1">
+          <h2 class="headingtext">D-kart</h2>
+          <p>
+            Shopping is an experience of discovering great products, finding
+            amazing deals, and enjoying the convenience of effortless purchases
+            every time !
+          </p>
+          <div class="footer-icon-container">
+            <i class="fa-brands fa-instagram" style="color: #ffffff"></i>
+            <i class="fa-brands fa-twitter" style="color: #ffffff"></i>
+            <i class="fa-brands fa-facebook" style="color: #ffffff"></i>
+          </div>
+        </div>
+      </div>
+      <p>@@2025 D-Kart</p>
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,97 @@
+﻿@model List<D_Kart.Domain.Models.Product>
+
+@{
+	ViewData["Title"] = "Collection Page";
+}
+
+
+<!-- Search bar -->
+<div>
+	<form method="get" class="product-search" style="margin-top: 10px;">
+		<input type="text" id="search" name="search" placeholder="Search" value="@Context.Request.Query["search"]" />
+		<button type="submit">
+			<i class="fa-solid fa-magnifying-glass"></i>
+		</button>
+	</form>
+</div>
+
+
+<!-- Products -->
+<div class="products" id="products">
+	@foreach (var product in Model)
+	{
+		<div class="products-box">
+			<!-- Link to Product Details -->
+			<a asp-action="Details" asp-controller="Products" asp-route-id="@product.Id">
+				<img src="@product.ImageUrl" class="product-img" alt="@product.Name" />
+			</a>
+			<p>@product.Name</p>
+			<p>₹@product.Price</p>
+			<!-- Add to Cart Button -->
+			<a asp-controller="Products" asp-action="AddToCart" asp-route-id="@product.Id">
+				<button type="submit" class="add-to-cart">Add to Cart</button>
+			</a>
+			<br />
+
+			<form asp-action="Add" asp-controller="Favorites" asp-route-id="@product.Id" method="post" style="display:inline;">
+				<button type="submit" title="Add to Favorites" class="fav-btn">
+					<i class="fa fa-heart"></i>
+				</button>
+
+			</form>
+		</div>
+	}
+</div>
+
+<style>
+
+	.fav-btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: #fff;
+		border: none;
+		cursor: pointer;
+		outline: none;
+		border-radius: 50%;
+		width: 38px;
+		height: 38px;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+		margin-top: 8px;
+		transition: background 0.2s, box-shadow 0.2s;
+		position: relative;
+	}
+
+		.fav-btn i.fa-heart {
+			color: #e63946;
+			font-size: 1.6em;
+			transition: color 0.2s, transform 0.15s;
+		}
+
+		.fav-btn:hover {
+			background: lightgrey;
+			box-shadow: 0 4px 16px rgba(230,57,70,0.15);
+		}
+
+			.fav-btn:hover i.fa-heart {
+				color: #ad1b31;
+				transform: scale(1.18);
+			}
+
+	.products-box {
+		background: #fff;
+		border-radius: 15px;
+		box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+		padding: 20px 15px 15px 15px;
+		margin-bottom: 30px;
+		transition: box-shadow 0.2s;
+	}
+
+		.products-box:hover {
+			box-shadow: 0 8px 32px rgba(230,57,70,0.13);
+		}
+</style>
+
+@section Scripts {
+	<script src="~/js/collection.js"></script>
+}
