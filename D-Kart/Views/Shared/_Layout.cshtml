@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - D_Kart</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/D_Kart.styles.css" asp-append-version="true" />
+    <link rel="icon" type="image/png" href="~/lib/images/favicon.jpg">
 
     <!-- I have given the font family as Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,6 +27,24 @@
             <p class="navbar-link"><a asp-controller="Favorites" asp-action="List">My Favorites</a></p>
             <p class="navbar-link"><a asp-controller="Products" asp-action="CartItems">Cart (@ViewBag.CartCount)</a></p>
 
+            @if (User.Identity.IsAuthenticated)
+            {
+                <p class="navbar-link" style="margin-right: 1em;">
+                    Hello, @User.Identity.Name!
+                </p>
+                <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                    @Html.AntiForgeryToken()
+                    <p class="navbar-link" style="display:inline; margin:0;">
+                        <button type="submit">
+                            Logout
+                        </button>
+                    </p>
+                </form>
+            }
+            else
+            {
+                <p class="navbar-link"><a asp-controller="Account" asp-action="LoginPage">Login</a></p>
+            }
         </div>
 
         <!-- creating a toggle bar  -->

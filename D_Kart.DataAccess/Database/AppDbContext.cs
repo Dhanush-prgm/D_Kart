@@ -11,6 +11,7 @@ namespace D_Kart.DataAccess.Database
         public DbSet<Product> Products { get; set; }
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Review> Reviews { get; set; }
+        public DbSet<LoginDetails> LoginDetails { get; set; }
 
     }
 }

@@ -22,7 +22,12 @@ namespace D_Kart.DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Review>> GetRecentAsync(int count = 5)
+        public async Task<int> GetCartCountAsync()
+        {
+            return await _context.Products.CountAsync(p => p.IsAddedToCart);
+        }
+
+        public async Task<List<Review>> GetRecentAsync(int count = 6)
         {
             return await _context.Reviews
                 .OrderByDescending(r => r.DateSubmitted)

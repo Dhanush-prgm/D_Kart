@@ -59,8 +59,3 @@ addToCartButtons.forEach((button) => {
 });
 
 
-//function redirectToDetails(productName) {
-//    window.location.href = '/ProductDetails/' + encodeURIComponent(productName);
-//}
-
-

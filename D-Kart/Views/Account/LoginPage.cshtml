@@ -1,0 +1,141 @@
+﻿@model D_Kart.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+
+<style>
+    .classic-login-container {
+        max-width: 400px;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+        padding: 2.5rem 2rem 2rem 2rem;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        position: relative;
+    }
+
+    .classic-login-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+        .classic-login-header h2 {
+            margin: 0;
+            font-weight: 700;
+            color: #2c3e50;
+            letter-spacing: 1px;
+        }
+
+        .classic-login-header p {
+            color: #7f8c8d;
+            font-size: 1.05rem;
+        }
+
+    .classic-login-form label {
+        font-weight: 500;
+        color: #444;
+        margin-bottom: 0.25rem;
+    }
+
+    .classic-login-form input,
+    .classic-login-form select {
+        width: 100%;
+        padding: 10px 12px;
+        border-radius: 6px;
+        border: 1px solid #dfe6e9;
+        margin-bottom: 1.2rem;
+        font-size: 1rem;
+        background: #f9f9f9;
+        transition: border-color 0.2s;
+    }
+
+        .classic-login-form input:focus {
+            border-color: #3498db;
+            outline: none;
+            background: #fff;
+        }
+
+    .classic-login-form .form-check {
+        margin-bottom: 1rem;
+    }
+
+    .classic-login-form button {
+        width: 100%;
+        background: linear-gradient(90deg, #3498db 0%, #6c5ce7 100%);
+        color: #fff;
+        font-weight: 600;
+        font-size: 1.1rem;
+        border: none;
+        border-radius: 6px;
+        padding: 10px 0;
+        margin-top: 0.5rem;
+        box-shadow: 0 4px 16px rgba(44, 62, 80, 0.07);
+        transition: background 0.2s;
+    }
+
+        .classic-login-form button:hover {
+            background: linear-gradient(90deg, #6c5ce7 0%, #3498db 100%);
+        }
+
+    .classic-login-footer {
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.95rem;
+        color: #636e72;
+    }
+
+        .classic-login-footer a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .classic-login-footer a:hover {
+                text-decoration: underline;
+            }
+
+    .validation-summary-errors {
+        color: #e74c3c;
+        margin-bottom: 1rem;
+    }
+</style>
+
+<div class="classic-login-container">
+    <div class="classic-login-header">
+        <h2>Login to Your Account</h2>
+        <p>Welcome back! Please sign in below.</p>
+    </div>
+
+    @if (ViewData.ModelState.ErrorCount > 0)
+    {
+        <div class="validation-summary-errors">
+            @Html.ValidationSummary()
+        </div>
+    }
+
+    <form asp-action="Login" asp-controller="Account" method="post" class="classic-login-form" autocomplete="off">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" type="email" placeholder="Email address" autocomplete="email" />
+        <span asp-validation-for="Email"></span>
+
+        <label asp-for="Password"></label>
+        <input asp-for="Password" type="password" placeholder="Password" autocomplete="current-password" />
+        <span asp-validation-for="Password"></span>
+
+
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="classic-login-footer">
+        New user? <a asp-controller="Account" asp-action="Register">Create an account</a>.
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

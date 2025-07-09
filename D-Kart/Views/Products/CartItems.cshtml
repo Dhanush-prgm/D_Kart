@@ -5,17 +5,27 @@
 }
 
 <!-- Cart Page -->
-<div class="container mt-5">
-    <h2 class="mb-4">Your Cart</h2>
+@if (!Model.Any())
+{
+    <h2 style="margin:20px">My Cart</h2>
+    <p style="margin:20px">You have no items in Cart.</p>
+    <a asp-action="Collection" asp-controller="Products" style="margin:20px">
+        <button class="back_button" style="text-decoration: none;"> Continue shopping </button>
+    </a>
+}
+
+else
+{
+    <h2 class="mb-4" style="margin:20px">Your Cart</h2>
 
     @foreach (var product in Model)
     {
 
         totalPrice += product.Price;
         <!-- Cart Items -->
-        <section class="cart-section";>
+        <section class="cart-section" ;>
             <div class="cart-container">
-                <img src="@product.ImageUrl" alt="White Shirt" ; />
+                <img src="@product.ImageUrl"; />
                 <div class="cart-item-details flex-grow-1">
                     <p class="mb-1 fw-bold">@product.Name</p>
                     <p class="mb-0">Price: ₹@product.Price</p>
@@ -28,7 +38,7 @@
                 <a asp-action="Collection" asp-controller="Products">
                     <button class="back_button" style="text-decoration: none; padding:3px"> Continue Shopping</button>
                 </a>
-         </div>
+            </div>
         </section>
     }
     <!-- Checkout Button -->
@@ -39,24 +49,25 @@
         </button>
     </div>
 
-<!-- Payment Modal -->
-<div class="payment-modal" id="paymentModal">
-    <div class="payment-modal-content">
-        <h3>Select Payment Mode</h3>
+    <!-- Payment Modal -->
+    <div class="payment-modal" id="paymentModal">
+        <div class="payment-modal-content">
+            <h3>Select Payment Mode</h3>
             <button onclick="onPaymentSuccess()" class="payment-btn">
-            Credit Card
-        </button>
+                Credit Card
+            </button>
             <button onclick="onPaymentSuccess()" class="payment-btn">
-            PayPal
-        </button>
+                PayPal
+            </button>
             <button onclick="onPaymentSuccess()" class="payment-btn">
-            Cash on Delivery
-        </button>
-        <button onclick="closePaymentModal()" class="close-modal-btn">
-            Cancel
-        </button>
+                Cash on Delivery
+            </button>
+            <button onclick="closePaymentModal()" class="close-modal-btn">
+                Cancel
+            </button>
+        </div>
     </div>
-</div>
+}
 
 @section Scripts {
     <script src="~/js/cart.js"></script>

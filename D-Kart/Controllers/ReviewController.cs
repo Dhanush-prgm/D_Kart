@@ -4,18 +4,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace D_Kart.Controllers
 {
-    public class ReviewController : Controller
+    public class ReviewController : BaseController
     {
-        private readonly IReviewService _reviewService;
-        public ReviewController(IReviewService reviewService)
+        public ReviewController(IReviewService reviewService) : base(reviewService)
         {
-            _reviewService = reviewService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Submit()
         {
-            var reviews = await _reviewService.GetRecentReviewsAsync();
+            ViewBag.CartCount = await GetCartCountAsync();
+            var reviews = await ((IReviewService)(_baseService)).GetRecentReviewsAsync();
             return View(reviews);
         }
 
@@ -26,11 +25,11 @@ namespace D_Kart.Controllers
             if (string.IsNullOrWhiteSpace(feedback) || feedback.Length > 500)
             {
                 ModelState.AddModelError("Feedback", "Feedback is required and should be less than 500 characters.");
-                var reviews = await _reviewService.GetRecentReviewsAsync();
+                var reviews = await ((IReviewService)(_baseService)).GetRecentReviewsAsync();
                 return View(reviews);
             }
 
-            await _reviewService.AddReviewAsync(feedback);
+            await ((IReviewService)_baseService).AddReviewAsync(feedback);
             TempData["Success"] = "Thank you for your feedback!";
             return RedirectToAction("Submit");
         }

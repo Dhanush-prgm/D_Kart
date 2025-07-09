@@ -7,7 +7,9 @@ namespace D_Kart.Controllers
 {
     public class ProductsController : BaseController
     {
-        public ProductsController(IProductService context) : base(context) { }
+        public ProductsController(IProductService context) : base(context) 
+        {
+        }
 
         public async Task<IActionResult> Collection()
         {

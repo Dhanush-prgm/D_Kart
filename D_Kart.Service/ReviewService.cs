@@ -24,6 +24,11 @@ namespace D_Kart.Service
             await _reviewRepository.AddAsync(review);
         }
 
+        public async Task<int> GetCartCountAsync()
+        {
+            return await _reviewRepository.GetCartCountAsync();
+        }
+
         public async Task<List<Review>> GetRecentReviewsAsync(int count = 5)
         {
             return await _reviewRepository.GetRecentAsync(count);
